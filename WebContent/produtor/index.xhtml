@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+     
+      template="/resources/decorator.xhtml">
+      
+		<ui:define name="title">Produtores</ui:define>
+      	
+      	<!-- Conteúdo inserido no decorator -->
+		<ui:define name="contents">
+					
+			<!-- Tabela de produtores -->
+			<div class="main_bg">
+				<div class="container">
+					<div class="main">
+						<div class="section group">								
+							<div class="col span_2_of_4">
+
+								<h:form>
+									<p:messages autoUpdate="true" showDetail="true"></p:messages>
+									<p:fieldset legend="Produtores">
+										<p:toolbar>
+											<p:toolbarGroup>
+												<p:commandButton value="Novo" action="#{produtorController.novo()}" update="@form"></p:commandButton>
+												<p:commandButton value="Salvar" action="#{produtorController.salvar()}" disabled="#{produtorController.buscar == true}" update="@form"></p:commandButton>
+												<p:commandButton value="Buscar" action="#{produtorController.listar()}" update="@form"></p:commandButton>
+												<p:commandButton value="Cancelar" action="#{produtorController.cancelar()}" disabled="#{produtorController.buscar == true}" update="@form"></p:commandButton>
+											</p:toolbarGroup>
+										</p:toolbar>
+										<p:panelGrid columns="2" rendered="#{produtorController.buscar == false}">
+											<h:outputLabel value="NOME"></h:outputLabel>
+											<p:inputText value="#{produtorController.produtor.nome}"></p:inputText>		
+											
+											<h:outputLabel value="CPF"></h:outputLabel>
+											<p:inputText value="#{produtorController.produtor.cpf}"></p:inputText>
+											
+											<h:outputLabel value="EMAIL"></h:outputLabel>
+											<p:inputText value="#{produtorController.produtor.email}"></p:inputText>
+											
+											<h:outputLabel value="ENDEREÇO"></h:outputLabel>
+											<p:inputText value="#{produtorController.produtor.endereco}"></p:inputText>
+											
+											<h:outputLabel value="TELEFONE"></h:outputLabel>
+											<p:inputText value="#{produtorController.produtor.telefone}"></p:inputText>
+											
+										</p:panelGrid>
+										<p:dataTable value="#{produtorController.produtores}" var="produtor" rendered="#{produtorController.buscar == true}">
+											<p:column>
+												<p:commandButton value="Atualizar" action="#{produtorController.atualizar(produtor)}" update="@form"></p:commandButton>
+												<p:commandButton value="Excluir !!" action="#{produtorController.excluir(produtor)}" update="@form"></p:commandButton>
+											</p:column>
+											<p:column headerText="NOME" sortBy="#{produtor.nome}">
+												<h:outputText value="#{produtor.nome}"></h:outputText>
+											</p:column>
+											<p:column headerText="CPF" sortBy="#{produtor.cpf}">
+												<h:outputText value="#{produtor.cpf}"></h:outputText>
+											</p:column>
+											<p:column headerText="EMAIL" sortBy="#{produtor.email}">
+												<h:outputText value="#{produtor.email}"></h:outputText>
+											</p:column>
+											<p:column headerText="ENDEREÇO" sortBy="#{produtor.endereco}">
+												<h:outputText value="#{produtor.endereco}"></h:outputText>
+											</p:column>
+											<p:column headerText="TELEFONE" sortBy="#{produtor.telefone}">
+												<h:outputText value="#{produtor.telefone}"></h:outputText>
+											</p:column>
+										</p:dataTable>
+									</p:fieldset>
+								</h:form>
+
+							</div>	
+					  		<div class="clear"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+      	
+      	
+      </ui:define>
+      
+</ui:composition>

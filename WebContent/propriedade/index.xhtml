@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+     
+      template="/resources/decorator.xhtml">
+      
+		<ui:define name="title">Propriedades</ui:define>
+      	
+      	<!-- Conteúdo inserido no decorator -->
+		<ui:define name="contents">
+
+			<!-- Tabela de propriedades -->
+			<div class="main_bg">
+				<div class="container">
+					<div class="main">
+						<div class="section group">								
+							<div class="col span_2_of_4">
+
+								<h:form>
+									<p:messages autoUpdate="true" showDetail="true"></p:messages>
+									<p:fieldset legend="Propriedades">
+										<p:toolbar>
+											<p:toolbarGroup>
+												<p:commandButton value="Novo" action="#{propriedadeController.novo()}" update="@form"></p:commandButton>
+												<p:commandButton value="Salvar" action="#{propriedadeController.salvar()}" disabled="#{propriedadeController.buscar == true}" update="@form"></p:commandButton>
+												<p:commandButton value="Buscar" action="#{propriedadeController.listar()}" update="@form"></p:commandButton>
+												<p:commandButton value="Cancelar" action="#{propriedadeController.cancelar()}" disabled="#{propriedadeController.buscar == true}" update="@form"></p:commandButton>
+											</p:toolbarGroup>
+										</p:toolbar>
+										<p:panelGrid columns="2" rendered="#{propriedadeController.buscar == false}">
+											<h:outputLabel value="NOME"></h:outputLabel>
+											<p:inputText value="#{propriedadeController.propriedade.nome}"></p:inputText>		
+											
+											<h:outputLabel value="ENDEREÇO"></h:outputLabel>
+											<p:inputText value="#{propriedadeController.propriedade.endereco}"></p:inputText>
+											
+											<h:outputLabel value="TAMANHO"></h:outputLabel>
+											<p:inputText value="#{propriedadeController.propriedade.tamanho}"></p:inputText>
+											
+											<h:outputLabel value="LATITUDE"></h:outputLabel>
+											<p:inputText value="#{propriedadeController.propriedade.latitude}"></p:inputText>
+											
+											<h:outputLabel value="LONGITUDE"></h:outputLabel>
+											<p:inputText value="#{propriedadeController.propriedade.longitude}"></p:inputText>
+											
+										</p:panelGrid>
+										<p:dataTable value="#{propriedadeController.propriedades}" var="propriedade" rendered="#{propriedadeController.buscar == true}">
+											<p:column>
+												<p:commandButton value="Atualizar" action="#{propriedadeController.atualizar(propriedade)}" update="@form"></p:commandButton>
+												<p:commandButton value="Excluir !!" action="#{propriedadeController.excluir(propriedade)}" update="@form"></p:commandButton>
+											</p:column>
+											<p:column headerText="NOME" sortBy="#{propriedade.nome}">
+												<h:outputText value="#{propriedade.nome}"></h:outputText>
+											</p:column>
+											<p:column headerText="ENDEREÇO" sortBy="#{propriedade.endereco}">
+												<h:outputText value="#{propriedade.endereco}"></h:outputText>
+											</p:column>
+											<p:column headerText="TAMANHO" sortBy="#{propriedade.tamanho}">
+												<h:outputText value="#{propriedade.tamanho}"></h:outputText>
+											</p:column>
+											<p:column headerText="LATITUDE" sortBy="#{propriedade.latitude}">
+												<h:outputText value="#{propriedade.latitude}"></h:outputText>
+											</p:column>
+											<p:column headerText="LONGITUDE" sortBy="#{propriedade.longitude}">
+												<h:outputText value="#{propriedade.longitude}"></h:outputText>
+											</p:column>
+										</p:dataTable>
+									</p:fieldset>
+								</h:form>
+
+							</div>	
+					  		<div class="clear"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+      	
+      	
+      </ui:define>
+      
+</ui:composition>

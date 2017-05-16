@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:p="http://primefaces.org/ui">
+	
+	<h:head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<link href="#{facesContext.externalContext.requestContextPath}/resources/css/bootstrap.css" rel="stylesheet" type="text/css" />
+		<link href="#{facesContext.externalContext.requestContextPath}/resources/css/style.css" rel="stylesheet" type="text/css" />
+		<link href="#{facesContext.externalContext.requestContextPath}/resources/css/flexslider.css" rel="stylesheet" type="text/css" />
+		
+		<link href="#{facesContext.externalContext.requestContextPath}/resources/css/swipebox.css" rel="stylesheet" type="text/css" />
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,300,700,800' rel='stylesheet' type='text/css' />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+		<script src="#{facesContext.externalContext.requestContextPath}/resources/js/jquery.min.js"></script>
+		<script src="#{facesContext.externalContext.requestContextPath}/resources/js/jquery.flexslider.js"></script>		
+		<script src="#{facesContext.externalContext.requestContextPath}/resources/js/jquery.swipebox.min.js"></script>
+		<script src="#{facesContext.externalContext.requestContextPath}/resources/js/modernizr.custom.js"></script>
+
+		<!--Light Box-->
+	    <script type="text/javascript">
+			jQuery(function($) 
+			{
+				$(".swipebox").swipebox();
+			});
+		</script>
+	    <!--Eng Light Box-->
+		
+		<title><h:outputText value="ProdutorRural :: " /><ui:insert name="title" /></title>
+	</h:head>
+	<h:body>
+	
+			<!-- header -->
+			<div class="banner1">
+				<div class="container">
+					<div class="header">
+						<div class="head-nav">
+							<span class="menu"> </span>
+								<ul class="cl-effect-1">
+									<li><a href="#{facesContext.externalContext.requestContextPath}/index2.faces">Início</a></li>
+									<li><a href="#{facesContext.externalContext.requestContextPath}/produtor/index.faces">Produtores</a></li> 
+									<li><a href="#{facesContext.externalContext.requestContextPath}/propriedade/index.faces">Propriedades</a></li>
+									<li><a href="#{facesContext.externalContext.requestContextPath}/produto/index.faces">Produtos</a></li>
+									
+									<div class="clearfix"> </div>
+								</ul>
+						</div>
+						<div class="social">
+							<ul>
+								<li><a href="https://www.facebook.com" target="_blank"><i class="fb"></i></a></li>
+								<li><a href="https://twitter.com/?lang=pt-br" target="_blank"><i class="twt"></i></a></li>
+								<li><a href="https://plus.google.com/?hl=pt_BR" target="_blank"><i class="goog"></i></a></li>
+								<li>
+									<a href="#{facesContext.externalContext.requestContextPath}" class="btn btn-info btn-lg" style="color:white;margin-top:-1.2em">
+         					 			<span class="glyphicon glyphicon-log-out" style="color:white"></span> Sair
+        							</a>
+        						</li>
+								
+								<div class="clearfix"> </div>
+							</ul>
+						</div>
+						<div class="clearfix"> </div>
+					</div>			
+							
+					<!-- script-for-nav -->
+					<script>
+						$( "span.menu" ).click(function() {
+						  $( ".head-nav ul" ).slideToggle(300, function() {
+							// Animation complete.
+						  });
+						});
+					</script>
+					<!-- script-for-nav -->
+						
+					<div class="logo1">
+						<a href="#{facesContext.externalContext.requestContextPath}/index2.faces">
+							<img src="#{facesContext.externalContext.requestContextPath}/resources/images/logo.png" alt="" class="img-responsive" style="opacity: 0.8" />
+						</a>
+					</div>
+				</div>
+			</div>
+			<!-- /header -->	
+		
+		<!-- O Conteúdo das páginas é inserido aqui -->
+		<div id="conteudo">
+    		<ui:insert name="contents"></ui:insert>
+    	</div> 
+	
+		
+		<!-- Rodapé -->
+		<div class="footer">
+			<div class="container">
+				<p>© 2017 All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
+			</div>
+		</div>
+	
+	</h:body>
+</html>

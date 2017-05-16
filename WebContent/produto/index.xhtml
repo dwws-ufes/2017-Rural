@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+     
+      template="/resources/decorator.xhtml">
+      
+		<ui:define name="title">Produtos</ui:define>
+      	
+      	<!-- Conteúdo inserido no decorator -->
+		<ui:define name="contents">
+					
+			<!-- Tabela de produtos -->
+			<div class="main_bg">
+				<div class="container">
+					<div class="main">
+						<div class="section group">								
+							<div class="col span_2_of_4">
+
+								<h:form>
+									<p:messages autoUpdate="true" showDetail="true"></p:messages>
+									<p:fieldset legend="Produtos">
+										<p:toolbar>
+											<p:toolbarGroup>
+												<p:commandButton value="Novo" action="#{produtoController.novo()}" update="@form"></p:commandButton>
+												<p:commandButton value="Salvar" action="#{produtoController.salvar()}" disabled="#{produtoController.buscar == true}" update="@form"></p:commandButton>
+												<p:commandButton value="Buscar" action="#{produtoController.listar()}" update="@form"></p:commandButton>
+												<p:commandButton value="Cancelar" action="#{produtoController.cancelar()}" disabled="#{produtoController.buscar == true}" update="@form"></p:commandButton>
+											</p:toolbarGroup>
+										</p:toolbar>
+										<p:panelGrid columns="2" rendered="#{produtoController.buscar == false}">
+											<h:outputLabel value="NOME"></h:outputLabel>
+											<p:inputText value="#{produtoController.produto.nome}"></p:inputText>		
+											
+											<h:outputLabel value="VALOR"></h:outputLabel>
+											<p:inputText value="#{produtoController.produto.valor}"></p:inputText>
+											
+										</p:panelGrid>
+										<p:dataTable value="#{produtoController.produtos}" var="produto" rendered="#{produtoController.buscar == true}">
+											<p:column>
+												<p:commandButton value="Atualizar" action="#{produtoController.atualizar(produto)}" update="@form"></p:commandButton>
+												<p:commandButton value="Excluir !!" action="#{produtoController.excluir(produto)}" update="@form"></p:commandButton>
+											</p:column>
+											<p:column headerText="NOME" sortBy="#{produto.nome}">
+												<h:outputText value="#{produto.nome}"></h:outputText>
+											</p:column>
+											<p:column headerText="VALOR" sortBy="#{produto.valor}">
+												<h:outputText value="#{produto.valor}"></h:outputText>
+											</p:column>
+										</p:dataTable>
+									</p:fieldset>
+								</h:form>
+
+							</div>	
+					  		<div class="clear"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+      	
+      	
+      </ui:define>
+      
+</ui:composition>

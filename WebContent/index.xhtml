@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:p="http://primefaces.org/ui">
+	
+	<h:head>
+		<title><h:outputText value="ProdutorRural" /></title>
+	
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="keywords" content="Majestic Login Form Widget Responsive, Login form web template,Flat Pricing tables,Flat Drop downs  Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+		
+		<link href='//fonts.googleapis.com/css?family=Muli:400,300,300italic,400italic' rel='stylesheet' type='text/css' />
+		<link href='//fonts.googleapis.com/css?family=Comfortaa:400,300,700' rel='stylesheet' type='text/css' />
+		
+		<link href="#{facesContext.externalContext.requestContextPath}/resources/css/style2.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="#{facesContext.externalContext.requestContextPath}/resources/css/animate-custom.css" rel="stylesheet" type="text/css" media="all" />
+		
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+		
+		
+	</h:head>
+	<h:body>
+		
+		<h1 class="w3ls" >Produtor Rural</h1>			
+
+		<div id="container_demo" >
+    		<!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
+    		<a class="hiddenanchor" id="toregister"></a>
+    		<a class="hiddenanchor" id="tologin"></a>
+    		
+    		<div id="wrapper">
+        		<div id="login" class="animate form">
+					<h:form  action="#" method="post" autocomplete="on"> 
+                		<h2>Login</h2> 
+                		<p> 					
+							<label for="username" class="uname" data-icon="u" ><span>Digite o seu email</span></label>
+                    		<h:inputText value="#{login.login}" id="username" name="username" required="required" type="text" />
+                    		<p:watermark for="username" value="EMAIL" id="watermark" />
+                		</p>
+                		<p> 
+                    		<label for="password" class="youpasswd" data-icon="p"><span>Digite a sua senha</span></label>
+                    		<h:inputSecret value="#{login.senha}" id="password" name="password" required="required" type="password" />
+                    		<p:watermark for="password" value="SENHA" id="watermark2" /> 
+                		</p>
+                		<p class="login button"> 
+                    		<h:commandButton action="#{login.autenticar()}" type="submit" value="Login" /> 
+							<h:messages style="color:red;font-size:34px;background-color:black"></h:messages> 
+						</p>
+                		<p class="change_link">
+							<span>Não está cadastrado ainda?</span>
+							<a href="#toregister" class="to_register">Cadastrar</a>
+						</p>
+            		</h:form>
+        		</div>
+				<div id="register" class="animate form">
+            		<h:form  action="#" method="post" autocomplete="on"> 
+                		<h2> Cadastre-se </h2> 
+                		<p> 
+							<label for="usernamesignup" class="uname" data-icon="u"><span>Seu nome</span></label>
+                    		<h:inputText value="#{usuarioController.usuario.nome}" id="usernamesignup" name="usernamesignup" required="required" type="text" />
+                    		<p:watermark for="usernamesignup" value="USERNAME" id="watermark3" />
+                		</p>
+                		<p> 
+                    		<label for="emailsignup" class="youmail" data-icon="e" ><span>Seu email</span></label>
+                    		<h:inputText value="#{usuarioController.usuario.email}" id="emailsignup" name="emailsignup" required="required" type="email" />
+                    		<p:watermark for="emailsignup" value="EXAMPLE@MAIL.COM" id="watermark4" /> 
+                		</p>
+                		<p> 
+                    		<label for="passwordsignup" class="youpasswd" data-icon="p"><span>Sua senha</span></label>
+                    		<h:inputSecret value="#{usuarioController.usuario.senha}" id="passwordsignup" name="passwordsignup" required="required" type="password" />
+							<p:watermark for="passwordsignup" value="eg. X8df!90EO" id="watermark5" />
+						</p>
+						<p> 
+                    		<label for="passwordsignup_confirm" class="youpasswd" data-icon="p"><span>Por favor, confirme sua senha</span></label>
+                    		<h:inputSecret value="#{usuarioController.usuario.senha}" id="passwordsignup_confirm" name="passwordsignup_confirm" required="required" type="password" />
+               	 			<p:watermark for="passwordsignup_confirm" value="eg. X8df!90EO" id="watermark6" />
+               	 		</p>
+                		<p class="signin button"> 
+							<h:commandButton action="#{usuarioController.salvar()}" type="submit" value="Cadastrar"/> 
+						</p>
+                		<p class="change_link">  
+							<span>Já é cadastrado?</span>
+							<a href="#tologin" class="to_register">Entrar</a>
+						</p>
+            		</h:form>
+        		</div>
+			</div>
+		</div>
+		
+		<p class="agileits">© 2016 Majestic Login Form. All Rights Reserved | Design by <a href="https://w3layouts.com/" target="_blank">w3layouts</a></p>  
+	
+	</h:body>
+</html>
