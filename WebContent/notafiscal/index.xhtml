@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+     
+      template="/resources/decorator.xhtml">
+      
+		<ui:define name="title">Notas Fiscais</ui:define>
+      	
+      	<!-- Conteúdo inserido no decorator -->
+		<ui:define name="contents">
+					
+			<!-- Tabela de notas fiscais -->
+			<div class="main_bg">
+				<div class="container">
+					<div class="main">
+						<div class="section group">								
+							<div class="col span_2_of_4">
+
+								<h:form>
+									<p:messages autoUpdate="true" showDetail="true"></p:messages>
+									<p:fieldset legend="Notas Fiscais">
+										<p:toolbar>
+											<p:toolbarGroup>
+												<p:commandButton value="Novo" action="#{notaFiscalController.novo()}" update="@form"></p:commandButton>
+												<p:commandButton value="Salvar" action="#{notaFiscalController.salvar()}" disabled="#{notaFiscalController.buscar == true}" update="@form"></p:commandButton>
+												<p:commandButton value="Buscar" action="#{notaFiscalController.listar()}" update="@form"></p:commandButton>
+												<p:commandButton value="Cancelar" action="#{notaFiscalController.cancelar()}" disabled="#{notaFiscalController.buscar == true}" update="@form"></p:commandButton>
+											</p:toolbarGroup>
+										</p:toolbar>
+										<p:panelGrid columns="2" rendered="#{notaFiscalController.buscar == false}">
+											<h:outputLabel value="NUMERO"></h:outputLabel>
+											<p:inputText value="#{notaFiscalController.notaFiscal.numero}"></p:inputText>		
+											
+											<h:outputLabel value="DATA DE EMISSÃO"></h:outputLabel>
+											<p:inputText value="#{notaFiscalController.notaFiscal.dataEmissao}" converter="javax.faces.DateTime"></p:inputText>
+											
+											<h:outputLabel>PROPRIEDADE</h:outputLabel>
+											<h:selectOneMenu
+												value="#{notaFiscalController.idPropriedadeSelecionada}"
+												converter="javax.faces.Long">
+													<f:selectItems value="#{notaFiscalController.propriedades}"
+														var="propriedade"
+														itemLabel="#{propriedade.nome} - Produtor #{propriedade.produtor.nome}" itemValue="#{propriedade.id}"/>
+											</h:selectOneMenu>
+											
+										</p:panelGrid>
+										<p:dataTable value="#{notaFiscalController.notasFiscais}" var="notaFiscal" rendered="#{notaFiscalController.buscar == true}">
+											<p:column>
+												<p:commandButton value="Atualizar" action="#{notaFiscalController.atualizar(notaFiscal)}" update="@form"></p:commandButton>
+												<p:commandButton value="Excluir !!" action="#{notaFiscalController.excluir(notaFiscal)}" update="@form"></p:commandButton>
+											</p:column>
+											<p:column>
+												<p:commandButton value="Produtos" action="#{notaFiscalController.gerenciarProdutos(notaFiscal)}" update="@form"></p:commandButton>
+											</p:column>
+											<p:column headerText="NUMERO" sortBy="#{notaFiscal.numero}">
+												<h:outputText value="#{notaFiscal.numero}"></h:outputText>
+											</p:column>
+											<p:column headerText="DATA DE EMISSÃO" sortBy="#{notaFiscal.dataEmissao}">
+												<h:outputText value="#{notaFiscal.dataEmissao}" converter="javax.faces.DateTime"></h:outputText>
+											</p:column>
+											<p:column headerText="PROPRIEDADE" sortBy="#{notaFiscal.propriedade.nome}">
+												<h:outputText value="#{notaFiscal.propriedade.nome}"></h:outputText>
+											</p:column>
+											<p:column headerText="PRODUTOR" sortBy="#{notaFiscal.propriedade.produtor.nome}">
+												<h:outputText value="#{notaFiscal.propriedade.produtor.nome}"></h:outputText>
+											</p:column>
+										</p:dataTable>
+									</p:fieldset>
+								</h:form>
+
+							</div>	
+					  		<div class="clear"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+      	
+      	
+      </ui:define>
+      
+</ui:composition>

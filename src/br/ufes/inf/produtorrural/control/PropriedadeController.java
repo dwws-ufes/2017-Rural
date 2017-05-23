@@ -1,15 +1,21 @@
 package br.ufes.inf.produtorrural.control;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
+import br.ufes.inf.produtorrural.application.LocalidadeService;
+import br.ufes.inf.produtorrural.application.ProdutorService;
 import br.ufes.inf.produtorrural.application.PropriedadeService;
+import br.ufes.inf.produtorrural.domain.Localidade;
+import br.ufes.inf.produtorrural.domain.Produtor;
 import br.ufes.inf.produtorrural.domain.Propriedade;
 
 @Named
@@ -21,24 +27,79 @@ public class PropriedadeController implements Serializable
 		
 		@EJB
 		private PropriedadeService propriedadeService;
+
+		@EJB
+		private ProdutorService produtorService;
+		
+		@EJB
+		private LocalidadeService localidadeService;
 		
 		private String estadoTela = "buscar";
+		
 		private Propriedade propriedade;
 		private List<Propriedade> propriedades;
-			
-				
+		
+		private Long idProdutorSelecionado;
+		private List<Produtor> produtores = new ArrayList<Produtor>();
+
+		private Long idLocalidadeSelecionada;
+		private List<Localidade> localidades = new ArrayList<Localidade>();
+
+		@PostConstruct
+		private void carregarProdutores(){
+			this.produtores = produtorService.listar();
+			this.localidades = localidadeService.listar();
+			listar();
+		}
+
+		public Long getIdProdutorSelecionado() {
+			return idProdutorSelecionado;
+		}
+
+		public void setIdProdutorSelecionado(Long idProdutorSelecionado) {
+			this.idProdutorSelecionado = idProdutorSelecionado;
+		}
+
+		public List<Produtor> getProdutores(){
+			return produtores;
+		}
+		
+		public Long getIdLocalidadeSelecionada() {
+			return idLocalidadeSelecionada;
+		}
+
+		public void setIdLocalidadeSelecionada(Long idLocalidadeSelecionada) {
+			this.idLocalidadeSelecionada = idLocalidadeSelecionada;
+		}
+
+		public List<Localidade> getLocalidades() {
+			return localidades;
+		}
+		
+		private void popularPropriedadeProdutor(){
+			this.propriedade.atualizarProdutor(new Produtor(idProdutorSelecionado)); 
+		}
+		
+		private void popularPropriedadeLocalidade(){
+			this.propriedade.atualizarLocalidade(new Localidade(idLocalidadeSelecionada)); 
+		}
+		
 		public void novo()
 		{
 			propriedade = new Propriedade();
+			idProdutorSelecionado = null;
+			idLocalidadeSelecionada = null;
 			mudarParaInserir();
 		}
 		
 		public void salvar() 
-		{			
+		{
+			popularPropriedadeLocalidade();
+			popularPropriedadeProdutor();
 			propriedadeService.salvar(this.propriedade);
 			this.propriedade = new Propriedade();
 			adicionarMensagem("Salvo com sucesso!", FacesMessage.SEVERITY_INFO);
-			mudarParaBuscar();		
+			mudarParaBuscar();
 		}
 		
 		public void excluir(Propriedade propriedade) 
@@ -50,7 +111,9 @@ public class PropriedadeController implements Serializable
 		
 		public void atualizar(Propriedade propriedade) 
 		{
-			this.propriedade = propriedade;			
+			this.propriedade = propriedade;	
+			this.idProdutorSelecionado = propriedade.getProdutor().getId();
+			this.idLocalidadeSelecionada = propriedade.getLocalidade().getId();
 			mudarParaEditar();
 		}
 		
@@ -123,5 +186,6 @@ public class PropriedadeController implements Serializable
 		public void mudarParaBuscar()
 		{
 			estadoTela = "buscar";
+			listar();
 		}
 }

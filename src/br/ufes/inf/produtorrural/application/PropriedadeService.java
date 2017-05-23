@@ -44,4 +44,11 @@ public class PropriedadeService implements Serializable
 			return q.getResultList();			
 		}
 		
+		public Integer quantidadePropriedadesCadastradas()
+		{	
+			Query q = entityManager.createQuery("select propriedade from Propriedade propriedade",Propriedade.class);
+				
+			return (Integer) q.getResultList().size();			
+		}
+		
 }

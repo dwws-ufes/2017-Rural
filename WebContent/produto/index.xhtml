@@ -35,8 +35,8 @@
 											<h:outputLabel value="NOME"></h:outputLabel>
 											<p:inputText value="#{produtoController.produto.nome}"></p:inputText>		
 											
-											<h:outputLabel value="VALOR"></h:outputLabel>
-											<p:inputText value="#{produtoController.produto.valor}"></p:inputText>
+											<h:outputLabel value="UNIDADE"></h:outputLabel>
+											<p:inputText value="#{produtoController.produto.unidade}"></p:inputText>
 											
 										</p:panelGrid>
 										<p:dataTable value="#{produtoController.produtos}" var="produto" rendered="#{produtoController.buscar == true}">
@@ -47,8 +47,8 @@
 											<p:column headerText="NOME" sortBy="#{produto.nome}">
 												<h:outputText value="#{produto.nome}"></h:outputText>
 											</p:column>
-											<p:column headerText="VALOR" sortBy="#{produto.valor}">
-												<h:outputText value="#{produto.valor}"></h:outputText>
+											<p:column headerText="UNIDADE" sortBy="#{produto.unidade}">
+												<h:outputText value="#{produto.unidade}"></h:outputText>
 											</p:column>
 										</p:dataTable>
 									</p:fieldset>

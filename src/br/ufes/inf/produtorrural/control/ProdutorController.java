@@ -1,10 +1,9 @@
 package br.ufes.inf.produtorrural.control;
 
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -27,7 +26,11 @@ public class ProdutorController implements Serializable
 		private String estadoTela = "buscar";
 		private Produtor produtor;
 		private List<Produtor> produtores;
-			
+		
+		@PostConstruct
+		private void carregarProdutores(){
+			listar();
+		}	
 				
 		public void novo()
 		{
@@ -100,19 +103,6 @@ public class ProdutorController implements Serializable
 			this.produtores = produtores;
 		}
 		
-		public Map<String, String> getSelectProdutores()
-		{
-			Map<String, String> produtores = new HashMap<String, String>(); 
-			produtores.put("New York", "New York");
-			produtores.put("London","London");
-			produtores.put("Paris","Paris");
-			produtores.put("Barcelona","Barcelona");
-			produtores.put("Istanbul","Istanbul");
-			produtores.put("Berlin","Berlin");
-			return produtores;
-		}
-		
-		
 		//M�todos para controlar a tela
 		public boolean isInserir()
 		{
@@ -137,5 +127,6 @@ public class ProdutorController implements Serializable
 		public void mudarParaBuscar()
 		{
 			estadoTela = "buscar";
+			listar();
 		}
 }

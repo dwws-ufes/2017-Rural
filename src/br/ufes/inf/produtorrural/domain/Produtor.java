@@ -17,7 +17,15 @@ public class Produtor
 	private String telefone;
 	private String email;
 	
-	protected Long getId() 
+	public Produtor() {
+		
+	}
+	
+	public Produtor(Long id){
+		this.id = id;
+	}
+	
+	public Long getId() 
 	{
 		return id;
 	}

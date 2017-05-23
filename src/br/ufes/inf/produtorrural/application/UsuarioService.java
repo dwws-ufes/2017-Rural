@@ -9,7 +9,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import br.ufes.inf.produtorrural.domain.Produtor;
 import br.ufes.inf.produtorrural.domain.Usuario;
 
 @Stateless
@@ -40,7 +39,7 @@ public class UsuarioService implements Serializable
 		@SuppressWarnings("unchecked")
 		public List<Usuario> listar()
 		{	
-			Query q = entityManager.createQuery("select produtor from Produtor produtor",Produtor.class);
+			Query q = entityManager.createQuery("select usuario from Usuario usuario",Usuario.class);
 				
 			return q.getResultList();			
 		}

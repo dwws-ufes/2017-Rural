@@ -44,4 +44,11 @@ public class ProdutoService implements Serializable
 			return q.getResultList();			
 		}
 		
+		public Integer quantidadeProdutosCadastrados(){
+
+			Query q = entityManager.createQuery("select produto from Produto produto",Produto.class);
+				
+			return (Integer) q.getResultList().size();
+		}
+		
 }

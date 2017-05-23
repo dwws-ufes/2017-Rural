@@ -9,11 +9,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import br.ufes.inf.produtorrural.domain.Produtor;
+import br.ufes.inf.produtorrural.domain.NotaFiscal;
 
 @Stateless
 @LocalBean
-public class ProdutorService implements Serializable 
+public class NotaFiscalService implements Serializable 
 {
 	//ADICIONADO PELO ECLIPSE 
 		private static final long serialVersionUID = 1L;
@@ -21,32 +21,32 @@ public class ProdutorService implements Serializable
 		@PersistenceContext
 		private EntityManager entityManager;
 		
-		public void salvar(Produtor produtor) 
+		public void salvar(NotaFiscal notaFiscal) 
 		{
-			entityManager.merge(produtor);
+			entityManager.merge(notaFiscal);
 		}
 		
-		public void excluir(Produtor produtor) 
+		public void excluir(NotaFiscal notaFiscal) 
 		{
-			entityManager.remove(entityManager.merge(produtor));
+			entityManager.remove(entityManager.merge(notaFiscal));
 		}
 		
-		public void atualizar(Produtor produtor) 
+		public void atualizar(NotaFiscal notaFiscal) 
 		{
-			entityManager.merge(produtor);
+			entityManager.merge(notaFiscal);
 		}
 		
 		@SuppressWarnings("unchecked")
-		public List<Produtor> listar()
+		public List<NotaFiscal> listar()
 		{	
-			Query q = entityManager.createQuery("select produtor from Produtor produtor",Produtor.class);
+			Query q = entityManager.createQuery("select nf from NotaFiscal nf",NotaFiscal.class);
 				
 			return q.getResultList();			
 		}
 		
-		public Integer quantidadeProdutoresCadastrados()
+		public Integer quantidadeNotasFiscaisCadastradas()
 		{	
-			Query q = entityManager.createQuery("select produtor from Produtor produtor",Produtor.class);
+			Query q = entityManager.createQuery("select nf from NotaFiscal nf",NotaFiscal.class);
 				
 			return (Integer) q.getResultList().size();			
 		}

@@ -12,9 +12,17 @@ public class Produto
 	private Long id;
 	
 	private String nome;
-	private double valor;
+	private String unidade;
 	
-	protected Long getId() 
+	public Produto(){
+		
+	}
+	
+	public Produto(Long id){
+		this.id = id;
+	}
+	
+	public Long getId() 
 	{
 		return id;
 	}
@@ -30,14 +38,10 @@ public class Produto
 	{
 		this.nome = nome;
 	}
-	public double getValor() 
-	{
-		return valor;
+	public String getUnidade() {
+		return unidade;
 	}
-	public void setValor(double valor) 
-	{
-		this.valor = valor;
+	public void setUnidade(String unidade) {
+		this.unidade = unidade;
 	}
-	
-	
 }

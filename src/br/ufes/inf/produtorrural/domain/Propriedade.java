@@ -1,13 +1,11 @@
 package br.ufes.inf.produtorrural.domain;
 
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Propriedade 
@@ -16,18 +14,25 @@ public class Propriedade
 	private Long id;
 
 	private String nome;
-	private String endereco;
 	private double tamanho;
 	private double latitude;
 	private double longitude;
 	
 	@ManyToOne 
 	private Produtor produtor;
-		
-	@OneToMany 
-	private Set<Produto> produtos;
 	
-	protected Long getId() 
+	@ManyToOne 
+	private Localidade localidade;
+	
+	public Propriedade(){
+		
+	}
+	
+	public Propriedade(Long id){
+		this.id = id;
+	}
+	
+	public Long getId() 
 	{
 		return id;
 	}
@@ -42,14 +47,6 @@ public class Propriedade
 	public void setNome(String nome) 
 	{
 		this.nome = nome;
-	}
-	public String getEndereco() 
-	{
-		return endereco;
-	}
-	public void setEndereco(String endereco) 
-	{
-		this.endereco = endereco;
 	}
 	public double getTamanho() 
 	{
@@ -82,14 +79,17 @@ public class Propriedade
 	public void setProdutor(Produtor produtor) 
 	{
 		this.produtor = produtor;
+	}	
+	public Localidade getLocalidade(){
+		return this.localidade;
 	}
-	public Set<Produto> getProdutos() 
-	{
-		return produtos;
+	public void setLocalidade(Localidade localidade){
+		this.localidade = localidade;
 	}
-	public void setProdutos(Set<Produto> produtos) 
-	{
-		this.produtos = produtos;
+	public void atualizarProdutor(Produtor produtor){
+		this.produtor  = produtor;
 	}
-	
+	public void atualizarLocalidade(Localidade localidade){
+		this.localidade  = localidade;
+	}
 }

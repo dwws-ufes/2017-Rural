@@ -10,52 +10,52 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
-import br.ufes.inf.produtorrural.application.UsuarioService;
-import br.ufes.inf.produtorrural.domain.Usuario;
+import br.ufes.inf.produtorrural.application.LocalidadeService;
+import br.ufes.inf.produtorrural.domain.Localidade;
 
 @Named
 @SessionScoped
-public class UsuarioController implements Serializable 
+public class LocalidadeController implements Serializable 
 {
 	//ADICIONADO PELO ECLIPSE
 		private static final long serialVersionUID = 1L;
 		
 		@EJB
-		private UsuarioService usuarioService;
+		private LocalidadeService localidadeService;
 		
 		private String estadoTela = "buscar";
-		private Usuario usuario = new Usuario();
-		private List<Usuario> usuarios;
+		private Localidade localidade;
+		private List<Localidade> localidades;
 		
 		@PostConstruct
-		private void carregarUsuarios(){
+		private void carregarLocalidades(){
 			listar();
-		}	
+		}
 				
 		public void novo()
 		{
-			usuario = new Usuario();
+			localidade = new Localidade();
 			mudarParaInserir();
 		}
 		
 		public void salvar() 
 		{			
-			usuarioService.salvar(this.usuario);
-			this.usuario = new Usuario();
+			localidadeService.salvar(this.localidade);
+			this.localidade = new Localidade();
 			adicionarMensagem("Salvo com sucesso!", FacesMessage.SEVERITY_INFO);
 			mudarParaBuscar();		
 		}
 		
-		public void excluir(Usuario usuario) 
+		public void excluir(Localidade localidade) 
 		{
-			usuarioService.excluir(usuario);
-			usuarios.remove(usuario);
+			localidadeService.excluir(localidade);
+			localidades.remove(localidade);
 			adicionarMensagem("Excluido com sucesso!", FacesMessage.SEVERITY_INFO);
 		}
 		
-		public void atualizar(Usuario usuario) 
+		public void atualizar(Localidade localidade) 
 		{
-			this.usuario = usuario;			
+			this.localidade = localidade;			
 			mudarParaEditar();
 		}
 		
@@ -67,9 +67,9 @@ public class UsuarioController implements Serializable
 				return;
 			}
 			
-			this.usuarios = usuarioService.listar();
+			this.localidades = localidadeService.listar();
 			
-			if(usuarios == null || usuarios.size() < 1)
+			if(localidades== null || localidades.size() < 1)
 			{
 				adicionarMensagem("Não temos nada cadastrado!", FacesMessage.SEVERITY_WARN);
 			}		
@@ -88,19 +88,19 @@ public class UsuarioController implements Serializable
 		}
 		
 		//Geters e Setters
-		public Usuario getUsuario() 
+		public Localidade getLocalidade() 
 		{ 
-			return usuario; 
+			return localidade; 
 		}
 		
-		public List<Usuario> getUsuarios() 
+		public List<Localidade> getLocalidades() 
 		{
-			return usuarios;
+			return localidades;
 		}
 
-		public void setUsuarios(List<Usuario> usuarios) 
+		public void setLocalidades(List<Localidade> localidades) 
 		{
-			this.usuarios = usuarios;
+			this.localidades = localidades;
 		}
 		
 		
@@ -129,5 +129,10 @@ public class UsuarioController implements Serializable
 		{
 			estadoTela = "buscar";
 			listar();
+		}
+		
+		public int getQuantidadeLocalidades()
+		{
+			return this.localidades.size();
 		}
 }

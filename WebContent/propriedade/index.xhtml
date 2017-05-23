@@ -35,9 +35,6 @@
 											<h:outputLabel value="NOME"></h:outputLabel>
 											<p:inputText value="#{propriedadeController.propriedade.nome}"></p:inputText>		
 											
-											<h:outputLabel value="ENDEREÇO"></h:outputLabel>
-											<p:inputText value="#{propriedadeController.propriedade.endereco}"></p:inputText>
-											
 											<h:outputLabel value="TAMANHO"></h:outputLabel>
 											<p:inputText value="#{propriedadeController.propriedade.tamanho}"></p:inputText>
 											
@@ -47,6 +44,23 @@
 											<h:outputLabel value="LONGITUDE"></h:outputLabel>
 											<p:inputText value="#{propriedadeController.propriedade.longitude}"></p:inputText>
 											
+											<h:outputLabel>LOCALIDADE</h:outputLabel>
+											<h:selectOneMenu
+												value="#{propriedadeController.idLocalidadeSelecionada}"
+												converter="javax.faces.Long">
+													<f:selectItems value="#{propriedadeController.localidades}"
+														var="localidade"
+														itemLabel="#{localidade.nome}" itemValue="#{localidade.id}"/>
+											</h:selectOneMenu>
+											
+											<h:outputLabel>PRODUTOR</h:outputLabel>
+											<h:selectOneMenu
+												value="#{propriedadeController.idProdutorSelecionado}"
+												converter="javax.faces.Long">
+													<f:selectItems value="#{propriedadeController.produtores}"
+														var="produtor"
+														itemLabel="#{produtor.nome}" itemValue="#{produtor.id}"/>
+											</h:selectOneMenu>
 										</p:panelGrid>
 										<p:dataTable value="#{propriedadeController.propriedades}" var="propriedade" rendered="#{propriedadeController.buscar == true}">
 											<p:column>
@@ -55,9 +69,6 @@
 											</p:column>
 											<p:column headerText="NOME" sortBy="#{propriedade.nome}">
 												<h:outputText value="#{propriedade.nome}"></h:outputText>
-											</p:column>
-											<p:column headerText="ENDEREÇO" sortBy="#{propriedade.endereco}">
-												<h:outputText value="#{propriedade.endereco}"></h:outputText>
 											</p:column>
 											<p:column headerText="TAMANHO" sortBy="#{propriedade.tamanho}">
 												<h:outputText value="#{propriedade.tamanho}"></h:outputText>

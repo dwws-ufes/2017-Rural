@@ -3,6 +3,7 @@ package br.ufes.inf.produtorrural.control;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -25,6 +26,11 @@ public class ProdutoController implements Serializable
 		private String estadoTela = "buscar";
 		private Produto produto;
 		private List<Produto> produtos;
+		
+		@PostConstruct
+		private void carregarProdutos(){
+			listar();
+		}
 			
 				
 		public void novo()
@@ -123,6 +129,7 @@ public class ProdutoController implements Serializable
 		public void mudarParaBuscar()
 		{
 			estadoTela = "buscar";
+			listar();
 		}
 		
 		public int getQuantidadeProdutos()
