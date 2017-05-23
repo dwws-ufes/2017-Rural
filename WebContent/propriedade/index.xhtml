@@ -35,7 +35,7 @@
 											<h:outputLabel value="NOME"></h:outputLabel>
 											<p:inputText value="#{propriedadeController.propriedade.nome}"></p:inputText>		
 											
-											<h:outputLabel value="TAMANHO"></h:outputLabel>
+											<h:outputLabel value="TAMANHO (EM HECTARES)"></h:outputLabel>
 											<p:inputText value="#{propriedadeController.propriedade.tamanho}"></p:inputText>
 											
 											<h:outputLabel value="LATITUDE"></h:outputLabel>
@@ -71,13 +71,13 @@
 												<h:outputText value="#{propriedade.nome}"></h:outputText>
 											</p:column>
 											<p:column headerText="TAMANHO" sortBy="#{propriedade.tamanho}">
-												<h:outputText value="#{propriedade.tamanho}"></h:outputText>
+												<h:outputText value="#{propriedade.tamanho} hectares"></h:outputText>
 											</p:column>
-											<p:column headerText="LATITUDE" sortBy="#{propriedade.latitude}">
-												<h:outputText value="#{propriedade.latitude}"></h:outputText>
+											<p:column headerText="LOCALIDADE" sortBy="#{propriedade.localidade.nome}">
+												<h:outputText value="#{propriedade.localidade.nome}"></h:outputText>
 											</p:column>
-											<p:column headerText="LONGITUDE" sortBy="#{propriedade.longitude}">
-												<h:outputText value="#{propriedade.longitude}"></h:outputText>
+											<p:column headerText="PRODUTOR" sortBy="#{propriedade.produtor.nome}">
+												<h:outputText value="#{propriedade.produtor.nome}"></h:outputText>
 											</p:column>
 										</p:dataTable>
 									</p:fieldset>

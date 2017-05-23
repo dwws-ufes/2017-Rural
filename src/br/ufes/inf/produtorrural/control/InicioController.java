@@ -35,6 +35,7 @@ public class InicioController implements Serializable
 		private Integer quantidadePropriedadesCadastradas;
 		private Integer quantidadeProdutosCadastrados;
 		private Integer quantidadeNotasFiscaisCadastradas;
+		private Double valorTotalNotasEmitidas;
 
 		@PostConstruct
 		public void carregarDados(){
@@ -42,6 +43,7 @@ public class InicioController implements Serializable
 			this.quantidadePropriedadesCadastradas = new Integer(propriedadeService.quantidadePropriedadesCadastradas());
 			this.quantidadeProdutosCadastrados = new Integer(produtoService.quantidadeProdutosCadastrados());
 			this.quantidadeNotasFiscaisCadastradas = new Integer(notaFiscalService.quantidadeNotasFiscaisCadastradas());
+			this.valorTotalNotasEmitidas = new Double(notaFiscalService.valorTotalNotasEmitidas());
 		}
 		
 		public Integer getQuantidadeProdutoresCadastrados() {
@@ -74,6 +76,14 @@ public class InicioController implements Serializable
 
 		public void setQuantidadeNotasFiscaisCadastradas(Integer quantidadeNotasFiscaisCadastradas) {
 			this.quantidadeNotasFiscaisCadastradas = quantidadeNotasFiscaisCadastradas;
+		}
+
+		public double getValorTotalNotasEmitidas() {
+			return valorTotalNotasEmitidas;
+		}
+
+		public void setValorTotalNotasEmitidas(Double valorTotalNotasEmitidas) {
+			this.valorTotalNotasEmitidas = valorTotalNotasEmitidas;
 		}
 
 }

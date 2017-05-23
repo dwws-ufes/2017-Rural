@@ -89,6 +89,8 @@ public class PropriedadeController implements Serializable
 			propriedade = new Propriedade();
 			idProdutorSelecionado = null;
 			idLocalidadeSelecionada = null;
+			this.produtores = produtorService.listar();
+			this.localidades = localidadeService.listar();
 			mudarParaInserir();
 		}
 		

@@ -104,12 +104,14 @@ public class NotaFiscalController implements Serializable
 		{
 			notaFiscal = new NotaFiscal();
 			idPropriedadeSelecionada = null;
+			this.propriedades = propriedadeService.listar();
 			mudarParaInserir();
 		}
 		
 		public void novoProdutoNotaFiscal()
 		{
 			produtoNotaFiscal = new ProdutoNotaFiscal();
+			this.produtos = produtoService.listar();
 			mudarParaInserir();
 		}
 		

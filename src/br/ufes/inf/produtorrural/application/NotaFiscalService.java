@@ -8,6 +8,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import br.ufes.inf.produtorrural.domain.NotaFiscal;
 
@@ -49,6 +50,12 @@ public class NotaFiscalService implements Serializable
 			Query q = entityManager.createQuery("select nf from NotaFiscal nf",NotaFiscal.class);
 				
 			return (Integer) q.getResultList().size();			
+		}
+		
+		public double valorTotalNotasEmitidas(){
+			TypedQuery<Double> q = entityManager.createQuery("select sum(nf.valorTotal) from NotaFiscal nf",Double.class);
+			
+			return q.getSingleResult();	
 		}
 		
 }

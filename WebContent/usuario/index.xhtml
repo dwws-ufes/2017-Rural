@@ -39,7 +39,7 @@
 											<p:inputText value="#{usuarioController.usuario.email}"></p:inputText>
 											
 											<h:outputLabel value="SENHA"></h:outputLabel>
-											<p:inputText value="#{usuarioController.usuario.senha}"></p:inputText>
+											<p:password value="#{usuarioController.usuario.senha}"></p:password>
 											
 										</p:panelGrid>
 										<p:dataTable value="#{usuarioController.usuarios}" var="usuario" rendered="#{usuarioController.buscar == true}">
@@ -52,9 +52,6 @@
 											</p:column>
 											<p:column headerText="EMAIL" sortBy="#{usuario.email}">
 												<h:outputText value="#{usuario.email}"></h:outputText>
-											</p:column>
-											<p:column headerText="SENHA" sortBy="#{usuario.senha}">
-												<h:outputText value="#{usuario.senha}"></h:outputText>
 											</p:column>
 										</p:dataTable>
 									</p:fieldset>

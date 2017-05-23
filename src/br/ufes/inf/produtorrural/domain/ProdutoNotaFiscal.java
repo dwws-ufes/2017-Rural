@@ -44,6 +44,9 @@ public class ProdutoNotaFiscal {
 	}
 	public void setProduto(Produto produto){
 		this.produto = produto;
+	}	
+	public NotaFiscal getNotaFiscal(){
+		return this.notaFiscal;
 	}
 	
 }
