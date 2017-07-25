@@ -5,6 +5,21 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   <name>ProdutorRural</name>
+  <dependencies>
+  	<dependency>
+		<groupId>org.primefaces</groupId>
+		<artifactId>primefaces</artifactId>
+		<version>6.1</version>
+	</dependency>
+  </dependencies>
+  <repositories>
+  	<repository>
+		<id>prime-repo</id>
+		<name>PrimeFaces Maven Repository</name>
+		<url>http://repository.primefaces.org</url>
+		<layout>default</layout>
+	</repository>
+  </repositories>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <resources>
