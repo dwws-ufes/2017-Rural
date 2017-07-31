@@ -37,6 +37,22 @@
 		<title><h:outputText value="ProdutorRural :: " /><ui:insert name="title" /></title>
 		
 		<f:event type="preRenderView" listener="#{loginController.verificarAutenticacao()}"></f:event>
+		<script>
+			jsf.ajax.addOnEvent(function(data) {
+			 var ajaxstatus = data.status;
+			 var ajaxloader = document.getElementById("ajaxloader");
+			 switch (ajaxstatus) {
+			 case "begin":
+			 ajaxloader.style.display = 'block';
+			break;
+			 case "complete":
+			 ajaxloader.style.display = 'none';
+			break;
+			 case "success":
+			 break;
+			 }
+			 });
+		</script>
 		
 	</h:head>
 	<h:body>
@@ -94,6 +110,7 @@
 		
 		<!-- O Conteúdo das páginas é inserido aqui -->
 		<div id="conteudo">
+			<img id="ajaxloader" src="#{facesContext.externalContext.requestContextPath}/images/ajaxloader.gif" style="display: none; float: center;" />
     		<ui:insert name="contents"></ui:insert>
     	</div> 
 	

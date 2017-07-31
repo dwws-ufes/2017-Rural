@@ -29,11 +29,21 @@
 												<p:commandButton value="Salvar" action="#{localidadeController.salvar()}" disabled="#{localidadeController.buscar == true}" update="@form"></p:commandButton>
 												<p:commandButton value="Buscar" action="#{localidadeController.listar()}" update="@form"></p:commandButton>
 												<p:commandButton value="Cancelar" action="#{localidadeController.cancelar()}" disabled="#{localidadeController.buscar == true}" update="@form"></p:commandButton>
+												<a style="float:right; margin-left: 2px; color:#fff; background-color: red; border-radius:3px; padding:4px;" href="#{facesContext.externalContext.requestContextPath}/data/localidades">RDF/XML</a>
 											</p:toolbarGroup>
 										</p:toolbar>
 										<p:panelGrid columns="2" rendered="#{localidadeController.buscar == false}">
 											<h:outputLabel value="NOME"></h:outputLabel>
-											<p:inputText value="#{localidadeController.localidade.nome}"></p:inputText>		
+											<p:inputText id="nome" value="#{localidadeController.localidade.nome}">
+												<f:ajax event="blur" listener="#{localidadeController.buscarLatLong()}" execute="@this" render="latitude longitude" />
+											</p:inputText>
+											
+											<h:outputLabel value="LATITUDE"></h:outputLabel>
+											<p:inputText id="latitude" value="#{localidadeController.localidade.latitude}"></p:inputText>
+											
+											<h:outputLabel value="LONGITUDE"></h:outputLabel>
+											<p:inputText id="longitude" value="#{localidadeController.localidade.longitude}"></p:inputText>
+												
 										</p:panelGrid>
 										<p:dataTable value="#{localidadeController.localidades}" var="localidade" rendered="#{localidadeController.buscar == true}">
 											<p:column>

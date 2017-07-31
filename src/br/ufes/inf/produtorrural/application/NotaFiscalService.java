@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import br.ufes.inf.produtorrural.domain.Localidade;
 import br.ufes.inf.produtorrural.domain.NotaFiscal;
 
 @Stateless
@@ -54,6 +55,26 @@ public class NotaFiscalService implements Serializable
 		
 		public double valorTotalNotasEmitidas(){
 			TypedQuery<Double> q = entityManager.createQuery("select sum(nf.valorTotal) from NotaFiscal nf",Double.class);
+			
+			return q.getSingleResult();	
+		}
+		
+		public double valorTotalPorLocalidade(Long localidade_id){
+			TypedQuery<Double> q = entityManager
+					.createQuery(
+							"select "
+								+ "sum(nf.valorTotal) "
+							+ "from "
+								+ "NotaFiscal nf "
+								+ "join nf.propriedade p "
+								+ "join p.localidade l "
+							+ "where l.id = "+localidade_id
+					,Double.class);
+			
+			if(q == null)
+			{
+				return 0;
+			}
 			
 			return q.getSingleResult();	
 		}

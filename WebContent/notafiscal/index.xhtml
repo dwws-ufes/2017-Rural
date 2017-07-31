@@ -38,6 +38,9 @@
 											<h:outputLabel value="DATA DE EMISSÃO"></h:outputLabel>
 											<p:inputText value="#{notaFiscalController.notaFiscal.dataEmissao}" converter="javax.faces.DateTime"></p:inputText>
 											
+											<h:outputLabel value="VALOR TOTAL"></h:outputLabel>
+											<p:inputText value="#{notaFiscalController.notaFiscal.valorTotal}"></p:inputText>
+											
 											<h:outputLabel>PROPRIEDADE</h:outputLabel>
 											<h:selectOneMenu
 												value="#{notaFiscalController.idPropriedadeSelecionada}"
@@ -53,9 +56,9 @@
 												<p:commandButton value="Atualizar" action="#{notaFiscalController.atualizar(notaFiscal)}" update="@form"></p:commandButton>
 												<p:commandButton value="Excluir !!" action="#{notaFiscalController.excluir(notaFiscal)}" update="@form"></p:commandButton>
 											</p:column>
-											<p:column>
+											<!-- <p:column>
 												<p:commandButton value="Produtos" action="#{notaFiscalController.gerenciarProdutos(notaFiscal)}" update="@form"></p:commandButton>
-											</p:column>
+											</p:column>-->
 											<p:column headerText="NUMERO" sortBy="#{notaFiscal.numero}">
 												<h:outputText value="#{notaFiscal.numero}"></h:outputText>
 											</p:column>
@@ -67,6 +70,9 @@
 											</p:column>
 											<p:column headerText="PRODUTOR" sortBy="#{notaFiscal.propriedade.produtor.nome}">
 												<h:outputText value="#{notaFiscal.propriedade.produtor.nome}"></h:outputText>
+											</p:column>
+											<p:column headerText="VALOR TOTAL" sortBy="#{notaFiscal.valorTotal}">
+												<h:outputText value="R$ #{notaFiscal.valorTotal}"></h:outputText>
 											</p:column>
 										</p:dataTable>
 									</p:fieldset>
