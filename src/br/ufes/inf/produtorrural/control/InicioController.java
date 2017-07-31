@@ -39,11 +39,11 @@ public class InicioController implements Serializable
 
 		@PostConstruct
 		public void carregarDados(){
-//			this.quantidadeProdutoresCadastrados = new Integer(produtorService.quantidadeProdutoresCadastrados());
-//			this.quantidadePropriedadesCadastradas = new Integer(propriedadeService.quantidadePropriedadesCadastradas());
-//			this.quantidadeProdutosCadastrados = new Integer(produtoService.quantidadeProdutosCadastrados());
-//			this.quantidadeNotasFiscaisCadastradas = new Integer(notaFiscalService.quantidadeNotasFiscaisCadastradas());
-//			this.valorTotalNotasEmitidas = new Double(notaFiscalService.valorTotalNotasEmitidas());
+			this.quantidadeProdutoresCadastrados = new Integer(produtorService.quantidadeProdutoresCadastrados());
+			this.quantidadePropriedadesCadastradas = new Integer(propriedadeService.quantidadePropriedadesCadastradas());
+			this.quantidadeProdutosCadastrados = new Integer(produtoService.quantidadeProdutosCadastrados());
+			this.quantidadeNotasFiscaisCadastradas = new Integer(notaFiscalService.quantidadeNotasFiscaisCadastradas());
+			this.valorTotalNotasEmitidas = new Double(notaFiscalService.valorTotalNotasEmitidas());
 		}
 		
 		public Integer getQuantidadeProdutoresCadastrados() {

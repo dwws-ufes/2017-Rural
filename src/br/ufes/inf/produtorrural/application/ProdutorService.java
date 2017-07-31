@@ -47,7 +47,9 @@ public class ProdutorService implements Serializable
 		public Integer quantidadeProdutoresCadastrados()
 		{	
 			Query q = entityManager.createQuery("select produtor from Produtor produtor",Produtor.class);
-				
+			
+			if(q == null) return 0;
+			
 			return (Integer) q.getResultList().size();			
 		}
 		

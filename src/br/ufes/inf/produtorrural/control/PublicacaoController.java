@@ -29,7 +29,6 @@ import br.ufes.inf.produtorrural.domain.Localidade;
 @WebServlet(urlPatterns = { "/data/localidades" })
 public class PublicacaoController extends HttpServlet
 {	
-	private static final DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 	@EJB
 	private LocalidadeService localidadeService;
 
@@ -72,16 +71,6 @@ public class PublicacaoController extends HttpServlet
 			.addProperty(posLat, ""+localidade.getLatitude())
 			.addProperty(posLong, ""+localidade.getLongitude())
 			.addProperty(caHasAmount, ""+notaFiscalService.valorTotalPorLocalidade(localidade.getId()));
-			
-			//.addProperty(RDFS.comment, pack.getDescription())
-			//.addLiteral(gravailabilityStarts, ResourceFactory
-			//.createTypedLiteral(df.format(pack.getBegin()), XSDDatatype.XSDdateTime))
-			//.addLiteral(gravailabilityEnds, 
-			//ResourceFactory.createTypedLiteral(df.format(pack.getEnd()), 
-			//XSDDatatype.XSDdateTime))
-			//.addProperty(grhasPriceSpecification, model.createResource()
-			//.addProperty(RDF.type, grPriceSpecification)
-			//.addLiteral(grhasCurrencyValue, pack.getPrice().floatValue()));
 		}
 		
 		try (PrintWriter out = resp.getWriter()) {

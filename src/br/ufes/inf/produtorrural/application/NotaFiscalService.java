@@ -50,11 +50,15 @@ public class NotaFiscalService implements Serializable
 		{	
 			Query q = entityManager.createQuery("select nf from NotaFiscal nf",NotaFiscal.class);
 				
+			if(q == null) return 0;
+			
 			return (Integer) q.getResultList().size();			
 		}
 		
 		public double valorTotalNotasEmitidas(){
-			TypedQuery<Double> q = entityManager.createQuery("select sum(nf.valorTotal) from NotaFiscal nf",Double.class);
+			TypedQuery<Double> q = entityManager.createQuery("select coalesce(sum(nf.valorTotal),0) from NotaFiscal nf",Double.class);
+			
+			if(q == null) return 0;
 			
 			return q.getSingleResult();	
 		}
@@ -63,7 +67,7 @@ public class NotaFiscalService implements Serializable
 			TypedQuery<Double> q = entityManager
 					.createQuery(
 							"select "
-								+ "sum(nf.valorTotal) "
+								+ "coalesce(sum(nf.valorTotal),0) "
 							+ "from "
 								+ "NotaFiscal nf "
 								+ "join nf.propriedade p "

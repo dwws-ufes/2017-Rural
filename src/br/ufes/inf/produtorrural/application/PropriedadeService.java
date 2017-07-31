@@ -48,6 +48,8 @@ public class PropriedadeService implements Serializable
 		{	
 			Query q = entityManager.createQuery("select propriedade from Propriedade propriedade",Propriedade.class);
 				
+			if(q == null) return 0;
+			
 			return (Integer) q.getResultList().size();			
 		}
 		

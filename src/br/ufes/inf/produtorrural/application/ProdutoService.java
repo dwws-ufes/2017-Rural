@@ -48,6 +48,8 @@ public class ProdutoService implements Serializable
 
 			Query q = entityManager.createQuery("select produto from Produto produto",Produto.class);
 				
+			if(q == null) return 0;
+			
 			return (Integer) q.getResultList().size();
 		}
 		
